@@ -26,11 +26,11 @@ internal sealed class SaleConfig
 
     /// <summary>Outer colour of the glow behind the coin.</summary>
     [JsonPropertyName("auraColor")]
-    public string AuraColorHex { get; set; } = "#3d0d61";
+    public string AuraColorHex { get; set; } = "#1f0533";
 
     /// <summary>Colour of the glow right next to the coin.</summary>
     [JsonPropertyName("auraCoreColor")]
-    public string AuraCoreColorHex { get; set; } = "#802ecc";
+    public string AuraCoreColorHex { get; set; } = "#4d1257";
 
     /// <summary>Opacity of the glow (0 hides it).</summary>
     [JsonPropertyName("auraStrength")]
@@ -79,9 +79,9 @@ internal sealed class SaleConfig
     [JsonPropertyName("fadeSeconds")]
     public float FadeSeconds { get; set; } = 0.4f;
 
-    public Color AuraColor => ParseColor(AuraColorHex, "#3d0d61");
+    public Color AuraColor => ParseColor(AuraColorHex, "#1f0533");
 
-    public Color AuraCoreColor => ParseColor(AuraCoreColorHex, "#802ecc");
+    public Color AuraCoreColor => ParseColor(AuraCoreColorHex, "#4d1257");
 
     public Color ShadowColor => ParseColor(ShadowColorHex, "#1f0533");
 

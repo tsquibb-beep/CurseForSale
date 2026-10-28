@@ -13,9 +13,10 @@
     // Only show the effect when you have enough gold for the removal.
     "onlyWhenAffordable": true,
 
-    // The glow behind the coin: its outer colour and the colour right next to the coin.
-    "auraColor": "#3d0d61",
-    "auraCoreColor": "#802ecc",
+    // The glow behind the coin: its outer colour (the same as shadowColor, so the glow
+    // matches the smoke on the coin) and the colour right next to the coin.
+    "auraColor": "#1f0533",
+    "auraCoreColor": "#4d1257",
 
     // Opacity of the glow. 0 hides it.
     "auraStrength": 1.0,

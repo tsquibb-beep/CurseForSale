@@ -69,8 +69,8 @@ float fbm(vec2 p) {
 ";
 
     private const string AuraCode = Common + @"
-uniform vec4 glow_color : source_color = vec4(0.24, 0.05, 0.38, 1.0);
-uniform vec4 core_color : source_color = vec4(0.50, 0.18, 0.80, 1.0);
+uniform vec4 glow_color : source_color = vec4(0.12, 0.02, 0.20, 1.0);
+uniform vec4 core_color : source_color = vec4(0.30, 0.07, 0.34, 1.0);
 uniform float intensity = 1.0;
 // How far smoke tongues lift the glow upwards, as a fraction of the coin's width.
 uniform float lift = 0.07;
