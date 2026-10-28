@@ -1,0 +1,49 @@
+// CurseForSale - settings. With the dev console open, `cfs reload` applies changes
+// without restarting.
+//
+// Copy this file to your save folder to keep your settings through mod updates:
+//   %APPDATA%\SlayTheSpire2\CurseForSale.config.jsonc
+// That copy is read in preference to this one.
+//
+// Lengths are fractions of the card removal coin's width.
+{
+    // Master switch for the whole mod.
+    "enabled": true,
+
+    // Only show the effect when you have enough gold for the removal.
+    "onlyWhenAffordable": true,
+
+    // The glow behind the coin: its outer colour and the colour right next to the coin.
+    "auraColor": "#3d0d61",
+    "auraCoreColor": "#802ecc",
+
+    // Opacity of the glow. 0 hides it.
+    "auraStrength": 1.0,
+
+    // How far the glow reaches past the coin, and how far smoke lifts it upwards.
+    "auraReach": 0.26,
+    "auraLift": 0.07,
+
+    // How much the glow breathes in and out. 0 keeps it steady.
+    "auraPulse": 0.12,
+
+    // The overlay on the coin: colour of the drifting dark wisps, and of the light
+    // purple wash over the whole coin.
+    "shadowColor": "#1f0533",
+    "tintColor": "#6b249e",
+
+    // Opacity of the whole overlay. 0 hides it.
+    "shadowStrength": 1.0,
+
+    // Darkness of the wisps, of the shadow creeping in from the rim, and strength
+    // of the purple wash.
+    "wispStrength": 0.7,
+    "rimStrength": 0.5,
+    "tintStrength": 0.1,
+
+    // How fast the smoke moves. 0 freezes it.
+    "speed": 0.45,
+
+    // Fade in/out time in seconds.
+    "fadeSeconds": 0.4
+}

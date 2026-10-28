@@ -1,0 +1,12 @@
+{
+    "id": "CurseForSale",
+    "name": "CurseForSale",
+    "author": "Tomasapan",
+    "description": "In the shop, the card removal button gets a dark purple glow and a shadowy overlay when your deck has a curse you can remove. It does not show for Eternal curses, or when card removal is not available. Purely visual, so it is safe in co-op.",
+    "version": "0.1.0",
+    "has_pck": false,
+    "has_dll": true,
+    "dependencies": [],
+    "affects_gameplay": false,
+    "min_game_version": "0.107.1"
+}

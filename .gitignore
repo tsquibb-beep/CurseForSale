@@ -1,0 +1,8 @@
+bin/
+obj/
+*.user
+dist/
+CLAUDE.md
+RELEASING.md
+HANDOVER.md
+.dev/
