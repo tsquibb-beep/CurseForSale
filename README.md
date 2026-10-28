@@ -1,7 +1,8 @@
 # CurseForSale
 
-A Slay the Spire 2 mod. In the shop, the card removal button gets a dark purple glow around it
-and a shadowy overlay on it when your deck has a curse you can remove.
+A Slay the Spire 2 mod. In the shop, the card removal button gets a dark purple glow around it,
+pink and green light reaching out from behind it, and a shadowy overlay on it when your deck has
+a curse you can remove.
 
 It does not show:
 
@@ -18,11 +19,14 @@ Copy the `CurseForSale` folder into `Slay the Spire 2/mods/`, or install with Vo
 ## Settings
 
 `CurseForSale.config.jsonc` in the mod folder sets the colours, strength, size and speed of the
-glow and the overlay, and whether the effect needs enough gold. To keep your settings through
+glow, the light and the overlay, the style of the light (rays, duotone, tendrils, streak or none),
+and whether the effect needs enough gold. To keep your settings through
 updates, copy it to `%APPDATA%\SlayTheSpire2\`; that copy is used first.
 
 With the dev console open (any mod enables it), `cfs reload` applies changes to the config
-without restarting, and `cfs diag` says whether the effect should show and why.
+without restarting, `cfs flare tendrils` (or `rays`, `duotone`, `streak`, `none`) switches the
+style of the light until the next restart, and `cfs diag` says whether the effect should show and
+why.
 
 ## Licence
 

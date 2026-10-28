@@ -30,7 +30,7 @@ internal sealed class SaleConfig
 
     /// <summary>Colour of the glow right next to the coin.</summary>
     [JsonPropertyName("auraCoreColor")]
-    public string AuraCoreColorHex { get; set; } = "#4d1257";
+    public string AuraCoreColorHex { get; set; } = "#2b0a3d";
 
     /// <summary>Opacity of the glow (0 hides it).</summary>
     [JsonPropertyName("auraStrength")]
@@ -72,6 +72,26 @@ internal sealed class SaleConfig
     [JsonPropertyName("tintStrength")]
     public float TintStrength { get; set; } = 0.1f;
 
+    /// <summary>Light reaching out from behind the coin: "rays", "duotone", "tendrils", "streak" or "none".</summary>
+    [JsonPropertyName("flare")]
+    public string Flare { get; set; } = "duotone";
+
+    /// <summary>The flare's main colour (pink).</summary>
+    [JsonPropertyName("flareColor")]
+    public string FlareColorHex { get; set; } = "#e0459a";
+
+    /// <summary>The flare's second colour (green), used by duotone, tendrils and streak.</summary>
+    [JsonPropertyName("flareColor2")]
+    public string FlareColor2Hex { get; set; } = "#5fe08a";
+
+    /// <summary>Brightness of the flare (0 hides it).</summary>
+    [JsonPropertyName("flareStrength")]
+    public float FlareStrength { get; set; } = 0.9f;
+
+    /// <summary>How far the flare reaches past the coin's rim.</summary>
+    [JsonPropertyName("flareReach")]
+    public float FlareReach { get; set; } = 0.55f;
+
     /// <summary>How fast the smoke moves. 0 freezes it.</summary>
     [JsonPropertyName("speed")]
     public float Speed { get; set; } = 0.45f;
@@ -81,11 +101,15 @@ internal sealed class SaleConfig
 
     public Color AuraColor => ParseColor(AuraColorHex, "#1f0533");
 
-    public Color AuraCoreColor => ParseColor(AuraCoreColorHex, "#4d1257");
+    public Color AuraCoreColor => ParseColor(AuraCoreColorHex, "#2b0a3d");
 
     public Color ShadowColor => ParseColor(ShadowColorHex, "#1f0533");
 
     public Color TintColor => ParseColor(TintColorHex, "#6b249e");
+
+    public Color FlareColor => ParseColor(FlareColorHex, "#e0459a");
+
+    public Color FlareColor2 => ParseColor(FlareColor2Hex, "#5fe08a");
 
     private static Color ParseColor(string value, string fallback)
     {

@@ -16,7 +16,7 @@
     // The glow behind the coin: its outer colour (the same as shadowColor, so the glow
     // matches the smoke on the coin) and the colour right next to the coin.
     "auraColor": "#1f0533",
-    "auraCoreColor": "#4d1257",
+    "auraCoreColor": "#2b0a3d",
 
     // Opacity of the glow. 0 hides it.
     "auraStrength": 1.0,
@@ -41,6 +41,24 @@
     "wispStrength": 0.7,
     "rimStrength": 0.5,
     "tintStrength": 0.1,
+
+    // Light reaching out from behind the coin:
+    //   "rays"     - pink shafts that waver and turn slowly
+    //   "duotone"  - pink rays turning one way, green rays the other
+    //   "tendrils" - wisps drifting outwards, green at the coin and pink at the tips
+    //   "streak"   - a lens flare: a pink streak and spikes with a broken green ring
+    //   "none"     - no flare
+    // With the dev console open, `cfs flare tendrils` (etc.) tries a style without
+    // editing this file.
+    "flare": "duotone",
+
+    // The flare's pink and green.
+    "flareColor": "#e0459a",
+    "flareColor2": "#5fe08a",
+
+    // Brightness of the flare (0 hides it), and how far it reaches past the coin.
+    "flareStrength": 0.9,
+    "flareReach": 0.55,
 
     // How fast the smoke moves. 0 freezes it.
     "speed": 0.45,

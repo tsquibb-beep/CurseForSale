@@ -27,6 +27,8 @@ internal static class CurseAura
 
         public Sprite2D? Shadow;
 
+        public Sprite2D? Flare;
+
         public Tween? Fade;
 
         public bool Shown;
@@ -148,7 +150,7 @@ internal static class CurseAura
                     return;
                 }
 
-                (state.Aura, state.Shadow) = CurseVisuals.Create(coin, SaleConfig.Current);
+                (state.Aura, state.Shadow, state.Flare) = CurseVisuals.Create(coin, SaleConfig.Current);
             }
 
             state.Shown = show;
@@ -158,7 +160,13 @@ internal static class CurseAura
             }
 
             state.Fade?.Kill();
-            state.Fade = CurseVisuals.FadeTo(state.Aura, state.Shadow, show ? 1f : 0f, Mathf.Max(SaleConfig.Current.FadeSeconds, 0f));
+            var sprites = new List<Sprite2D> { state.Aura, state.Shadow };
+            if (state.Flare != null)
+            {
+                sprites.Add(state.Flare);
+            }
+
+            state.Fade = CurseVisuals.FadeTo(sprites, show ? 1f : 0f, Mathf.Max(SaleConfig.Current.FadeSeconds, 0f));
         }
         catch (Exception ex)
         {
@@ -174,7 +182,8 @@ internal static class CurseAura
             state.Fade?.Kill();
             state.Aura?.QueueFree();
             state.Shadow?.QueueFree();
-            state.Aura = state.Shadow = null;
+            state.Flare?.QueueFree();
+            state.Aura = state.Shadow = state.Flare = null;
             state.Shown = false;
         }
 

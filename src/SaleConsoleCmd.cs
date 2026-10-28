@@ -10,7 +10,8 @@ namespace CurseForSale;
 
 /// <summary>
 /// `cfs diag` says whether the card removal coin should wear the curse effect and why (also
-/// written to the game log); `cfs reload` re-reads the config and rebuilds the effect.
+/// written to the game log); `cfs reload` re-reads the config and rebuilds the effect; `cfs flare
+/// <style>` switches the light behind the coin until the next reload.
 ///
 /// The dev console discovers commands in loaded mods by reflection, so shipping this public
 /// class with a parameterless constructor is enough to register it.
@@ -19,7 +20,7 @@ public class SaleConsoleCmd : AbstractConsoleCmd
 {
     public override string CmdName => "cfs";
 
-    public override string Args => "[diag|reload]";
+    public override string Args => "[diag|reload|flare <rays|duotone|tendrils|streak|none>]";
 
     public override string Description => "CurseForSale: explain the card removal effect, or reload the config.";
 
@@ -42,8 +43,24 @@ public class SaleConsoleCmd : AbstractConsoleCmd
 
                 return new CmdResult(success: true, "Config reloaded.");
 
+            case "flare":
+                string? style = args.Skip(1).FirstOrDefault()?.ToLowerInvariant();
+                if (style == null || (style != CurseVisuals.NoFlare && !CurseVisuals.FlareStyles.Contains(style)))
+                {
+                    return new CmdResult(success: false, $"Use: cfs flare {string.Join(", ", CurseVisuals.FlareStyles)} or none.");
+                }
+
+                // Until the next reload or restart; the config file is not changed.
+                SaleConfig.Current.Flare = style;
+                if (CurseAura.LastSlot is { } shown)
+                {
+                    CurseAura.Restyle(shown);
+                }
+
+                return new CmdResult(success: true, $"Flare: {style}.");
+
             default:
-                return new CmdResult(success: false, "Use: cfs diag or cfs reload.");
+                return new CmdResult(success: false, "Use: cfs diag, cfs reload or cfs flare <style>.");
         }
     }
 
@@ -72,7 +89,12 @@ public class SaleConsoleCmd : AbstractConsoleCmd
     {
         if (args.Length <= 1)
         {
-            return CompleteArgument(new[] { "diag", "reload" }, Array.Empty<string>(), args.FirstOrDefault() ?? "");
+            return CompleteArgument(new[] { "diag", "reload", "flare" }, Array.Empty<string>(), args.FirstOrDefault() ?? "");
+        }
+
+        if (args.Length == 2 && args[0].Equals("flare", StringComparison.OrdinalIgnoreCase))
+        {
+            return CompleteArgument(CurseVisuals.FlareStyles.Append(CurseVisuals.NoFlare).ToArray(), Array.Empty<string>(), args[1]);
         }
 
         return new CompletionResult { Type = CompletionType.Argument, ArgumentContext = CmdName };
