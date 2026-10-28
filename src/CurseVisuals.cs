@@ -177,6 +177,9 @@ void fragment() {
         foreach (Sprite2D sprite in new[] { aura, shadow })
         {
             var material = (ShaderMaterial)sprite.Material;
+            // Set explicitly: an unset shader parameter reads back as Nil, which a tween cannot
+            // start from ("Type mismatch between initial and final value: Nil and float").
+            material.SetShaderParameter("fade", 0f);
             material.SetShaderParameter("speed", Mathf.Max(config.Speed, 0f));
             material.SetShaderParameter("aspect", (float)texture.GetHeight() / Mathf.Max(texture.GetWidth(), 1));
             material.SetShaderParameter("grow", grow);
@@ -321,28 +324,33 @@ void fragment() {
     public static Tween? FadeTo(Sprite2D aura, Sprite2D shadow, float target, float seconds)
     {
         var materials = new[] { (ShaderMaterial)aura.Material, (ShaderMaterial)shadow.Material };
-        if (seconds <= 0f || !aura.IsInsideTree())
+
+        void SetFade(float value)
         {
             foreach (ShaderMaterial material in materials)
             {
-                material.SetShaderParameter("fade", target);
+                material.SetShaderParameter("fade", value);
             }
+        }
 
+        if (seconds <= 0f || !aura.IsInsideTree())
+        {
+            SetFade(target);
             aura.Visible = shadow.Visible = target > 0f;
             return null;
         }
 
+        // One method tween drives both materials, starting from wherever a cut-short fade left off.
+        Variant current = materials[0].GetShaderParameter("fade");
+        float from = current.VariantType == Variant.Type.Float ? current.AsSingle() : 0f;
         aura.Visible = shadow.Visible = true;
-        Tween tween = aura.CreateTween().SetParallel();
-        foreach (ShaderMaterial material in materials)
-        {
-            tween.TweenProperty(material, "shader_parameter/fade", target, seconds)
-                .SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Sine);
-        }
+        Tween tween = aura.CreateTween();
+        tween.TweenMethod(Callable.From<float>(SetFade), from, target, seconds)
+            .SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Sine);
 
         if (target <= 0f)
         {
-            tween.Chain().TweenCallback(Callable.From(() =>
+            tween.TweenCallback(Callable.From(() =>
             {
                 if (GodotObject.IsInstanceValid(aura) && GodotObject.IsInstanceValid(shadow))
                 {
