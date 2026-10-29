@@ -35,7 +35,7 @@ internal static class CurseVisuals
 shader_type canvas_item;
 
 uniform float fade = 0.0;
-uniform float speed = 0.45;
+uniform float speed = 0.3;
 // Coin texture height / width, so lengths are round on screen.
 uniform float aspect = 1.26;
 // How much larger than the texture the mask is (and the aura's quad).
@@ -76,10 +76,10 @@ render_mode blend_mix;
 
 uniform vec4 glow_color : source_color = vec4(0.12, 0.02, 0.20, 1.0);
 uniform vec4 core_color : source_color = vec4(0.17, 0.04, 0.24, 1.0);
-uniform float intensity = 1.0;
+uniform float intensity = 0.91;
 // How far smoke tongues lift the glow upwards, as a fraction of the coin's width.
 uniform float lift = 0.07;
-uniform float pulse = 0.12;
+uniform float pulse = 0.07;
 uniform sampler2D glow_mask : filter_linear, repeat_disable, hint_default_transparent;
 
 void vertex() {
@@ -119,9 +119,9 @@ render_mode blend_mix;
 uniform vec4 shadow_color : source_color = vec4(0.12, 0.02, 0.20, 1.0);
 uniform vec4 tint_color : source_color = vec4(0.42, 0.14, 0.62, 1.0);
 uniform float intensity = 1.0;
-uniform float wisp_strength = 0.7;
-uniform float rim_strength = 0.5;
-uniform float tint_strength = 0.1;
+uniform float wisp_strength = 0.4;
+uniform float rim_strength = 0.25;
+uniform float tint_strength = 0.18;
 uniform sampler2D glow_mask : filter_linear, repeat_disable, hint_default_white;
 
 void vertex() {
@@ -155,11 +155,11 @@ void fragment() {
     private const string FlareCode = Common + @"
 render_mode blend_add;
 
-uniform vec4 flare_color : source_color = vec4(0.88, 0.27, 0.60, 1.0);
-uniform vec4 flare_color2 : source_color = vec4(0.37, 0.88, 0.54, 1.0);
-uniform float intensity = 0.9;
+uniform vec4 flare_color : source_color = vec4(0.63, 0.32, 0.43, 1.0);
+uniform vec4 flare_color2 : source_color = vec4(0.88, 0.27, 0.60, 1.0);
+uniform float intensity = 0.35;
 // How far past the coin's rim the light reaches.
-uniform float reach = 0.55;
+uniform float reach = 0.5;
 // 0 rays, 1 duotone, 2 tendrils, 3 streak.
 uniform int style = 0;
 uniform vec2 coin_centre = vec2(0.5, 0.73);

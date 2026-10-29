@@ -19,14 +19,14 @@
     "auraCoreColor": "#2b0a3d",
 
     // Opacity of the glow. 0 hides it.
-    "auraStrength": 1.0,
+    "auraStrength": 0.91,
 
     // How far the glow reaches past the coin, and how far smoke lifts it upwards.
-    "auraReach": 0.26,
+    "auraReach": 0.46,
     "auraLift": 0.07,
 
     // How much the glow breathes in and out. 0 keeps it steady.
-    "auraPulse": 0.12,
+    "auraPulse": 0.07,
 
     // The overlay on the coin: colour of the drifting dark wisps, and of the light
     // purple wash over the whole coin.
@@ -38,9 +38,9 @@
 
     // Darkness of the wisps, of the shadow creeping in from the rim, and strength
     // of the purple wash.
-    "wispStrength": 0.7,
-    "rimStrength": 0.5,
-    "tintStrength": 0.1,
+    "wispStrength": 0.4,
+    "rimStrength": 0.25,
+    "tintStrength": 0.18,
 
     // Light reaching out from behind the coin:
     //   "rays"     - pink shafts that waver and turn slowly
@@ -50,19 +50,21 @@
     //   "none"     - no flare
     // With the dev console open, `cfs flare tendrils` (etc.) tries a style without
     // editing this file.
-    "flare": "duotone",
+    "flare": "rays",
 
-    // The flare's pink and green.
-    "flareColor": "#e0459a",
-    "flareColor2": "#5fe08a",
+    // The flare's main colour (rays only uses this one), and its second colour for
+    // duotone, tendrils and streak. For the original pink and green, use "#e0459a"
+    // and "#5fe08a".
+    "flareColor": "#a0526e",
+    "flareColor2": "#e0459a",
 
     // Brightness of the flare (0 hides it), and how far it reaches past the coin.
-    "flareStrength": 0.9,
-    "flareReach": 0.55,
+    "flareStrength": 0.35,
+    "flareReach": 0.5,
 
     // How fast the smoke moves. 0 freezes it.
-    "speed": 0.45,
+    "speed": 0.3,
 
     // Fade in/out time in seconds.
-    "fadeSeconds": 0.4
+    "fadeSeconds": 0.6
 }
